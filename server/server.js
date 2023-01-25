@@ -9,31 +9,31 @@ let quotesRouter = require('../server/routes/quotes.router');
 // bodyParser decodes the http request from the client
 let bodyParser = require('body-parser');
 app.use(bodyParser.json());
-
-
-// app.use('/quotes', quotesRouter);
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use('/quotes', quotesRouter);
+
 // express static file serving - public is the folder name
 app.use(express.static('server/public'));
 
 
 
 
-app.get('/quotes', (req, res) => {
+// app.get('/quotes', (req, res) => {
 
-    console.log('request for /quotes was made');
-    res.status(200);
-    res.send(quotes);
-})
+//     console.log('request for /quotes was made');
+//     res.status(200);
+//     res.send(quotes);
+// })
 
-app.post('/quotes', (req, res)=>{
-    let quote = req.body
-    console.log('this is the req.body: ', quote);
-    quotes.push(quote);
-    res.send({message: 'Successfully added quote'});
+// app.post('/quotes', (req, res)=>{
+//     let quote = req.body
+//     console.log('this is the req.body: ', quote);
+//     quotes.push(quote);
+//     res.send({message: 'Successfully added quote'});
     
     
-})
+// })
 
 
 
