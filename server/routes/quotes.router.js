@@ -5,12 +5,26 @@ let quotes = require('../public/modules/quoteList');
 
 
 
-router.get('/', (req, res) => {
+router.get('/',(req, res) => {
 
     console.log('request for /quotes was made');
     res.status(200);
     res.send(quotes);
 })
+
+
+
+router.get('/',(req, res) => {
+
+    console.log('request for /quotes was made');
+    res.status(200);
+    res.send(quotes);
+})
+
+
+
+
+
 
 router.post('/', (req, res)=>{
     let quote = req.body
@@ -20,6 +34,10 @@ router.post('/', (req, res)=>{
     
     
 })
+
+
+
+
 
 
 
