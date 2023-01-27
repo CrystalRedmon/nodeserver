@@ -27,12 +27,19 @@ router.get('/byPrice', async (req, res) => {
     try {
         let minprice = req.body.minprice;
         let maxprice = req.body.maxprice;
+        let type = req.body.type;
+        let price = req.body.price;
+        let accessibility = req.body.accessibility;
+        let participants = req.body.participants; 
 
 
         const ideaByPrice = await axios.get(`http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}`)
+        
+        const ideaByType = await axios.get(`http://www.boredapi.com/api/activity?type=${type}&minprice=${minprice}&maxprice=${maxprice}&participants=${participants}`);
+        
+        const ideaByParticipant = await axios.get(`http://www.boredapi.com/api/activity?participants=${participants}`)
 
-        console.log(`This is it ${minprice}, ${maxprice}`);
-        res.send(ideaByPrice.data);
+        res.send([ideaByPrice.data, ideaByType.data, ideaByParticipant.data]);
     }
     catch(error){
         res.sendStatus(500);
