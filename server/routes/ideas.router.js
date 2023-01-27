@@ -1,5 +1,4 @@
 let express = require('express');
-let app = express();
 let router = express.Router();
 const axios = require('axios');
 
@@ -32,7 +31,6 @@ router.get('/byPrice', async (req, res) => {
         let accessibility = req.body.accessibility;
         let participants = req.body.participants; 
 
-
         const ideaByPrice = await axios.get(`http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}`)
         
         const ideaByType = await axios.get(`http://www.boredapi.com/api/activity?type=${type}&minprice=${minprice}&maxprice=${maxprice}&participants=${participants}`);
@@ -47,12 +45,16 @@ router.get('/byPrice', async (req, res) => {
     }
 
 
-
-
-    console.log('Make it cheap');
 })
 
+// allow user to select from any number of criteria
+// add react frontend
+// use a css library to style
+// post on LI
+// create ReadMe
 
+
+// move on to another api that uses an api key, Google API 
 
 
 

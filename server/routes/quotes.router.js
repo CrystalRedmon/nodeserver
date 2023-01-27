@@ -13,19 +13,6 @@ router.get('/',(req, res) => {
 })
 
 
-
-router.get('/',(req, res) => {
-
-    console.log('request for /quotes was made');
-    res.status(200);
-    res.send(quotes);
-})
-
-
-
-
-
-
 router.post('/', (req, res)=>{
     let quote = req.body
     console.log('this is the req.body: ', quote);
