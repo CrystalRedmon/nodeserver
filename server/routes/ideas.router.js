@@ -36,7 +36,7 @@ router.get('/byPrice', async (req, res) => {
         const ideaByPrice = await axios.get(`http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}`)
         
         const ideaByType = await axios.get(`http://www.boredapi.com/api/activity?type=${type}&minprice=${minprice}&maxprice=${maxprice}&participants=${participants}`);
-        
+
         const ideaByParticipant = await axios.get(`http://www.boredapi.com/api/activity?participants=${participants}`)
 
         res.send([ideaByPrice.data, ideaByType.data, ideaByParticipant.data]);
@@ -46,13 +46,7 @@ router.get('/byPrice', async (req, res) => {
         console.log("It failed. Error: ", error);
     }
 
-    // axios.get(`http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}`)
-    //     .then((response) => {
-    //         res.send(response.data);
-    //     }).catch(err => {
-    //         res.sendStatus(500);
-    //         console.log('GET ideas failed: ', err);
-    //     });
+
 
 
     console.log('Make it cheap');
