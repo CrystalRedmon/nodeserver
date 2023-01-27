@@ -10,27 +10,42 @@ const axios = require('axios');
 router.get('/', (req, res) => {
 
     axios.get('http://www.boredapi.com/api/activity/')
-    .then((response) => {
-        res.send(response.data.activity);
-    }).catch(err => {
-        res.sendStatus(500);
-        console.log('GET ideas failed: ', err);
-    });
+        .then((response) => {
+            res.send(response.data.activity);
+        }).catch(err => {
+            res.sendStatus(500);
+            console.log('GET ideas failed: ', err);
+        });
 
 
     console.log('I\'m going to get all of the ideas!');
 })
 
 
-router.get('/byPrice', (req, res) => {
+router.get('/byPrice', async (req, res) => {
 
-    axios.get(`http://www.boredapi.com/api/activity?minprice=.3&maxprice=1.0`)
-    .then((response) => {
-        res.send(response.data.activity);
-    }).catch(err => {
+    try {
+        let minprice = req.body.minprice;
+        let maxprice = req.body.maxprice;
+
+
+        const ideaByPrice = await axios.get(`http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}`)
+
+        console.log(`This is it ${minprice}, ${maxprice}`);
+        res.send(ideaByPrice.data);
+    }
+    catch(error){
         res.sendStatus(500);
-        console.log('GET ideas failed: ', err);
-    });
+        console.log("It failed. Error: ", error);
+    }
+
+    // axios.get(`http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}`)
+    //     .then((response) => {
+    //         res.send(response.data);
+    //     }).catch(err => {
+    //         res.sendStatus(500);
+    //         console.log('GET ideas failed: ', err);
+    //     });
 
 
     console.log('Make it cheap');
