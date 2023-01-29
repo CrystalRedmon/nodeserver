@@ -5,6 +5,23 @@ const axios = require('axios');
 
 
 
+
+let sisters = {
+    older: "chantel",
+    middle: "tiffany",
+    younger: "crystal"
+}
+
+const getSisterName = (sisterObject) => {
+
+    for (const property in sisterObject) {
+        console.log('My name is: ', property);
+    }
+
+};
+
+console.log(getSisterName(sisters))
+
 // get random activity
 router.get('/', (req, res) => {
 
@@ -29,23 +46,62 @@ router.get('/byPrice', async (req, res) => {
         let type = req.body.type;
         let price = req.body.price;
         let accessibility = req.body.accessibility;
-        let participants = req.body.participants; 
+        let participants = req.body.participants;
 
         const ideaByPrice = await axios.get(`http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}`)
-        
+
         const ideaByType = await axios.get(`http://www.boredapi.com/api/activity?type=${type}&minprice=${minprice}&maxprice=${maxprice}&participants=${participants}`);
 
-        const ideaByParticipant = await axios.get(`http://www.boredapi.com/api/activity?participants=${participants}`)
+        const ideaByParticipant = await axios.get
+            (`http://www.boredapi.com/api/activity${(participants > 0 ? `?participants = ${participants}` : ``)}`)
 
-        res.send([ideaByPrice.data, ideaByType.data, ideaByParticipant.data]);
+        res.send(ideaByParticipant.data);
+        console.log('number of participants: ', participants, ideaByParticipant.data.participants);
     }
-    catch(error){
+    catch (error) {
         res.sendStatus(500);
         console.log("It failed. Error: ", error);
     }
 
 
+});
+
+
+router.get('/bymultiplecriteria', async (req, res) => {
+    let criteria = "";
+    if (req.body.participants) {
+        criteria += `${req.body}`;
+        console.log('Come on son');
+        for (const options of criteria) {
+
+            console.log('option and and description: ', criteria, criteria.options);
+        }
+        return criteria;
+    }
+
+
+    try {
+        let ideaByParticipant = await axios.get(`http://www.boredapi.com/api/activity?participants=${criteria}`);
+        res.send(ideaByParticipant.data);
+        console.log('This the participants search: ', ideaByParticipant.data)
+
+    } catch (error) {
+        console.log("This is the error: ", error, "participants ");
+
+    }
+
 })
+
+
+
+
+
+
+
+
+
+
+
 
 // allow user to select from any number of criteria
 // add react frontend
