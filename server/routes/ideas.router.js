@@ -71,29 +71,37 @@ router.get('/byPrice', async (req, res) => {
 
 
 
-router.get('/bymultiplecriteria', async (req, res) => {
-    let criteria = "";
+router.get('/bycriteria', async (req, res) => {
+
+    let criteria = [];
 
     const getCriteria = (reqbody) => {
 
-        if (reqbody.participants) {
-            criteria += `${reqbody.participants}`;
-            console.log('req.body: ', req.body);
+        for (let [key, value] of Object.entries(reqbody)) {
 
-            return criteria;
+            if (key === 'type' || 'participants' || 'accessibility' || 'price' || 'minprice' || 'maxprice' || 'minaccessibility' || 'maxaccessibility') {
+                criteria.push(`${key}=${value}`); 
+                console.log("this is the key/value pair: ", key, ":", value);
+            }else{
+                console.log('it did not work');
+            }
+            
         }
+
+        criteria = criteria.join('&');
+        return criteria;
 
     }
 
     try {
         getCriteria(req.body);
 
-        let ideaByParticipant = await axios.get(`http://www.boredapi.com/api/activity?participants=${criteria}`);
-        res.send(ideaByParticipant.data);
-        console.log('This the participants search: ', ideaByParticipant.data)
+        let ideaByCriteria = await axios.get(`http://www.boredapi.com/api/activity?${criteria}`);
+        res.send(ideaByCriteria.data);
+        console.log('Results for search by criteria: ', ideaByCriteria.data)
 
     } catch (error) {
-        console.log("This is the error: ", error, "participants ");
+        console.log("This is the error: ", error);
 
     }
 
