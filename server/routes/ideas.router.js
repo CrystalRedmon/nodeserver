@@ -63,24 +63,31 @@ router.get('/byPrice', async (req, res) => {
         console.log("It failed. Error: ", error);
     }
 
-
 });
+
+
+
+
+
 
 
 router.get('/bymultiplecriteria', async (req, res) => {
     let criteria = "";
-    if (req.body.participants) {
-        criteria += `${req.body}`;
-        console.log('Come on son');
-        for (const options of criteria) {
 
-            console.log('option and and description: ', criteria, criteria.options);
+    const getCriteria = (reqbody) => {
+
+        if (reqbody.participants) {
+            criteria += `${reqbody.participants}`;
+            console.log('req.body: ', req.body);
+
+            return criteria;
         }
-        return criteria;
+
     }
 
-
     try {
+        getCriteria(req.body);
+
         let ideaByParticipant = await axios.get(`http://www.boredapi.com/api/activity?participants=${criteria}`);
         res.send(ideaByParticipant.data);
         console.log('This the participants search: ', ideaByParticipant.data)
