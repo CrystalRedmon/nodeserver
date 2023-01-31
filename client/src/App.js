@@ -7,7 +7,10 @@ function App() {
   const [activity, setActivity] = useState('');
 
   const [type, setType] = useState('');
-
+  const [criteria, setCriteria]= useState({
+    type: '',
+    price: '.5',
+  });
 
   const handleOnClick = () => {
     console.log('inside handleOnClick');
@@ -26,8 +29,16 @@ function App() {
   const getActivityByCriteria = (evt) => {
     evt.preventDefault();
 
-    console.log('Getting Activity', type);
+    console.log('Getting criteria', criteria);
 
+    axios.get(`/ideas/bycriteria${criteria}`)
+    .then(response=>{
+      console.log('This is the criteria response: ', response.data);
+      setActivity(response.data.activity);
+    })
+    .catch(error=>{
+      console.log('Unable to get byCriteria: ', error);
+    })
 
   }
 
@@ -54,7 +65,7 @@ function App() {
 
         <form onSubmit={getActivityByCriteria}>
           <label>Search For: </label>
-          <select onChange={evt => setType(evt.target.value)} name='type' id='type'>
+          <select onChange={evt => setCriteria({...criteria, type: evt.target.value})} name='type' id='type'>
             <option value=''>Please Choose An Activity Type</option>
             <option value='busywork'>Busywork</option>
             <option value='charity'>Charity</option>

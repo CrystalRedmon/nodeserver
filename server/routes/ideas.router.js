@@ -71,10 +71,10 @@ router.get('/byPrice', async (req, res) => {
 
 
 
-router.get('/bycriteria', async (req, res) => {
+router.get('/bycriteria:criteria', async (req, res) => {
 
     let criteria = [];
-
+    console.log('These are the params: ', req.params.criteria)
     const getCriteria = (reqbody) => {
 
         for (let [key, value] of Object.entries(reqbody)) {
@@ -94,11 +94,12 @@ router.get('/bycriteria', async (req, res) => {
     }
 
     try {
-        getCriteria(req.body);
-
+        getCriteria(req.params.criteria);
+        
         let ideaByCriteria = await axios.get(`http://www.boredapi.com/api/activity?${criteria}`);
+    
         res.send(ideaByCriteria.data);
-        console.log('Results for search by criteria: ', ideaByCriteria.data)
+        console.log('Results for search by criteria: ', criteria, ideaByCriteria.data)
 
     } catch (error) {
         console.log("This is the error: ", error);
