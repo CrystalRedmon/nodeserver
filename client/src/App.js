@@ -1,23 +1,53 @@
-import logo from './logo.svg';
 import './App.css';
+import axios, * as others from 'axios';
+import {useState} from 'react';
 
 function App() {
+
+const [activity, setActivity]=useState('');
+
+
+  const handleOnClick = () => {
+    console.log('inside handleOnClick');
+   
+    axios.get('/ideas')
+      .then(response => {
+        console.log('this is the response: ', response.data);
+        setActivity(response.data)
+      })
+      .catch(error => {
+        console.log('Get did not work. Error: ', error);
+      })
+
+  }
+
+
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Don't Be Bored
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+
+      <main>
+
+        <button onClick={handleOnClick}>
+          Select Random Activity
+        </button>
+
+        <div>
+         {activity ? <p>{activity}</p> : <p>Results Go Here</p>}
+        </div>
+
+      </main>
+
+
+
+
+
+
     </div>
   );
 }
