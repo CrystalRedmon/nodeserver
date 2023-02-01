@@ -38,68 +38,15 @@ router.get('/', (req, res) => {
 })
 
 
-router.get('/byPrice', async (req, res) => {
-
-    try {
-        let minprice = req.body.minprice;
-        let maxprice = req.body.maxprice;
-        let type = req.body.type;
-        let price = req.body.price;
-        let accessibility = req.body.accessibility;
-        let participants = req.body.participants;
-
-        const ideaByPrice = await axios.get(`http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}`)
-
-        const ideaByType = await axios.get(`http://www.boredapi.com/api/activity?type=${type}&minprice=${minprice}&maxprice=${maxprice}&participants=${participants}`);
-
-        const ideaByParticipant = await axios.get
-            (`http://www.boredapi.com/api/activity${(participants > 0 ? `?participants = ${participants}` : ``)}`)
-
-        res.send(ideaByParticipant.data);
-        console.log('number of participants: ', participants, ideaByParticipant.data.participants);
-    }
-    catch (error) {
-        res.sendStatus(500);
-        console.log("It failed. Error: ", error);
-    }
-
-});
-
-
-
-
-
-
-
 router.get('/bycriteria:criteria', async (req, res) => {
-
-    let criteria = [];
+    let criteria = req.params.criteria;
     console.log('These are the params: ', req.params.criteria)
-    const getCriteria = (reqbody) => {
-
-        for (let [key, value] of Object.entries(reqbody)) {
-
-            if (key === 'type' || 'participants' || 'accessibility' || 'price' || 'minprice' || 'maxprice' || 'minaccessibility' || 'maxaccessibility') {
-                criteria.push(`${key}=${value}`); 
-                console.log("this is the key/value pair: ", key, ":", value);
-            }else{
-                console.log('it did not work');
-            }
-            
-        }
-
-        criteria = criteria.join('&');
-        return criteria;
-
-    }
 
     try {
-        getCriteria(req.params.criteria);
-        
         let ideaByCriteria = await axios.get(`http://www.boredapi.com/api/activity?${criteria}`);
     
         res.send(ideaByCriteria.data);
-        console.log('Results for search by criteria: ', criteria, ideaByCriteria.data)
+        console.log('Results for search by criteria: ', ideaByCriteria.data)
 
     } catch (error) {
         console.log("This is the error: ", error);
@@ -130,4 +77,34 @@ router.get('/bycriteria:criteria', async (req, res) => {
 
 
 
+    // ****** FUNCTION PREVIOUSLY USED TO PUT THE CREATE URL PATH ******** //
+
+    // const getCriteria = (reqbody) => {
+
+    //     for (let [key, value] of Object.entries(reqbody)) {
+
+    //         if (key === 'type' || 'participants' || 'accessibility' || 'price' || 'minprice' || 'maxprice' || 'minaccessibility' || 'maxaccessibility') {
+    //             criteria.push(`${key}=${value}`); 
+    //             console.log("this is the key/value pair: ", key, ":", value);
+    //         }else{
+    //             console.log('it did not work');
+    //         }
+            
+    //     }
+
+        
+    //     return criteria;
+
+    // }
+
+
+
+
+
+
+
 module.exports = router
+
+
+
+
