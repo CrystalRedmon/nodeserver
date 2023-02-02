@@ -10,6 +10,7 @@ function App() {
   const [criteria, setCriteria] = useState({
     type: '',
     participants: '',
+    accessibility: '',
     price: ''
   });
 
@@ -27,16 +28,37 @@ function App() {
 
   }
 
+  const getPriceCriteria = (evt) => {
+
+    if (evt.target.value === '0') {
+      setCriteria({ ...criteria, price: '0', minprice: '', maxprice: '' });
+    } else if (evt.target.value === '.1-0.7') {
+      setCriteria({ ...criteria, price: '0', minprice: '.1', maxprice: '.7' });
+    } else {
+      setCriteria({ ...criteria, price: '0', minprice: '.8', maxprice: '1.0' });
+    }
+    return criteria
+  }
+
+  const getAccessibilityCriteria =(evt)=>{
+
+    if (evt.target.value ==='0'){
+      setCriteria({...criteria, accessibility: '0'});
+    }else if (evt.target.value === '.1-.7'){
+      setCriteria({...criteria, minaccessibility: '.1', maxaccessibility: '.7'})
+    }else{
+      setCriteria({...criteria, minaccessibility: '.8', maxaccessibility: '1'});
+    }
+    return criteria;
+  }
 
 
+  // new URLSearchParams creates a search param object and creates a string
   const params = new URLSearchParams(criteria)
 
   const getActivityByCriteria = (evt) => {
     evt.preventDefault();
-
-    // new URLSearchParams creates a search param object and creates a string
-
-    console.log('Getting criteria', params);
+    console.log('Getting criteria', criteria);
 
     axios.get(`/ideas/bycriteria${params}`)
       .then(response => {
@@ -84,40 +106,48 @@ function App() {
           </select>
           <br></br>
 
-
-
           <label htmlFor='participantsInput'>Number of Participants: </label>
           <input onChange={evt => setCriteria({ ...criteria, participants: evt.target.value })} type='number' id='participantsInput' min='1' max='10'></input>
           <br></br>
 
-          <fieldset onChange={evt =>setCriteria({...criteria, price: evt.target.value})}>
-            <legend>Select Price</legend> 
-          {/* /// TODO- REMOVE BORDER  */}
-          <input type='radio' name='priceInput' value='0'>
+          <fieldset onChange={getPriceCriteria}>
+
+            <legend>Select Price</legend>
+            {/* /// TODO- REMOVE BORDER  */}
+            <input type='radio' name='priceInput' value='0'>
             </input>
             <label htmlFor='priceInput'>Free 99!</label>
 
-            <input type='radio' name='priceInput' value='minprice=0.01&maxprice=0.49' >
+            <input type='radio' name='priceInput' value='.1-0.7' >
             </input>
-            <label htmlFor='priceInput'>Cheap</label>
+            <label htmlFor='priceInput'>Affordable</label>
 
-            <input type='radio' name='priceInput' value='.5'>
+            <input type='radio' name='priceInput' value='.8-1'>
             </input>
-            <label htmlFor='priceInput'>On Budget </label>
+            <label htmlFor='priceInput'>Expensive </label>
 
-            <input type='radio' name='priceInput' value='minprice=.5&maxprice=.99' >
-            </input>
-            <label htmlFor='priceInput'>Stretch</label>
 
-            <input type='radio' name='priceInput' value='1' >
-            </input>
-            <label htmlFor='priceInput'>Expensive</label>
+          </fieldset>
+          <br></br>
+
+
+          <fieldset onChange={getAccessibilityCriteria}>
+            <legend>Accesibility Rating</legend>
+
+            <input type='radio' name='accessibility' value='0'></input>
+            <label htmlFor='notAccessible' >Not Accessible</label>
+
+            <input type='radio' name='accessibility' value='.1-0.7'></input>
+            <label htmlFor='somewhatAccessible' >Minimal Accesibility</label>
+
+            <input type='radio' name='accessibility' value='.8-1' ></input>
+            <label htmlFor='fullyAccessible' >Full Accessibility</label>
+
+
+
 
           </fieldset>
 
-
-
-          <br></br>
 
 
           <button type='submit'>
