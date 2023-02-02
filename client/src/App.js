@@ -9,7 +9,8 @@ function App() {
   const [type, setType] = useState('');
   const [criteria, setCriteria] = useState({
     type: '',
-    participants: '1'
+    participants: '',
+    price: ''
   });
 
   const handleOnClick = () => {
@@ -28,20 +29,19 @@ function App() {
 
 
 
+  const params = new URLSearchParams(criteria)
 
   const getActivityByCriteria = (evt) => {
     evt.preventDefault();
 
     // new URLSearchParams creates a search param object and creates a string
-    const params = new URLSearchParams(criteria)
-    
 
     console.log('Getting criteria', params);
 
     axios.get(`/ideas/bycriteria${params}`)
       .then(response => {
         console.log('This is the criteria response: ', response.data);
-        setActivity(response.data.activity);
+        setActivity(response.data);
       })
       .catch(error => {
         console.log('Unable to get byCriteria: ', error);
@@ -82,6 +82,44 @@ function App() {
             <option value='relaxation'>Relaxation</option>
             <option value='social'>Social</option>
           </select>
+          <br></br>
+
+
+
+          <label htmlFor='participantsInput'>Number of Participants: </label>
+          <input onChange={evt => setCriteria({ ...criteria, participants: evt.target.value })} type='number' id='participantsInput' min='1' max='10'></input>
+          <br></br>
+
+          <fieldset onChange={evt =>setCriteria({...criteria, price: evt.target.value})}>
+            <legend>Select Price</legend> 
+          {/* /// TODO- REMOVE BORDER  */}
+          <input type='radio' name='priceInput' value='0'>
+            </input>
+            <label htmlFor='priceInput'>Free 99!</label>
+
+            <input type='radio' name='priceInput' value='minprice=0.01&maxprice=0.49' >
+            </input>
+            <label htmlFor='priceInput'>Cheap</label>
+
+            <input type='radio' name='priceInput' value='.5'>
+            </input>
+            <label htmlFor='priceInput'>On Budget </label>
+
+            <input type='radio' name='priceInput' value='minprice=.5&maxprice=.99' >
+            </input>
+            <label htmlFor='priceInput'>Stretch</label>
+
+            <input type='radio' name='priceInput' value='1' >
+            </input>
+            <label htmlFor='priceInput'>Expensive</label>
+
+          </fieldset>
+
+
+
+          <br></br>
+
+
           <button type='submit'>
             Get Activity
           </button >
@@ -89,7 +127,7 @@ function App() {
 
 
         <div>
-          {activity ? <p>{activity}</p> : <p>Results Go Here</p>}
+          {activity.activity ? <p>{activity.activity}</p> : <p>Results Go Here</p>}
         </div>
 
       </main>
