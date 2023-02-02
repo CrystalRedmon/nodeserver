@@ -10,7 +10,6 @@ function App() {
   const [criteria, setCriteria] = useState({
     type: '',
     participants: '',
-    accessibility: '',
     price: ''
   });
 
@@ -33,24 +32,25 @@ function App() {
     if (evt.target.value === '0') {
       setCriteria({ ...criteria, price: '0', minprice: '', maxprice: '' });
     } else if (evt.target.value === '.1-0.7') {
-      setCriteria({ ...criteria, price: '0', minprice: '.1', maxprice: '.7' });
+      setCriteria({ ...criteria, price: '', minprice: '.1', maxprice: '.7' });
     } else {
-      setCriteria({ ...criteria, price: '0', minprice: '.8', maxprice: '1.0' });
+      setCriteria({ ...criteria, price: '', minprice: '.8', maxprice: '1.0' });
     }
     return criteria
   }
 
-  const getAccessibilityCriteria =(evt)=>{
 
-    if (evt.target.value ==='0'){
-      setCriteria({...criteria, accessibility: '0'});
-    }else if (evt.target.value === '.1-.7'){
-      setCriteria({...criteria, minaccessibility: '.1', maxaccessibility: '.7'})
-    }else{
-      setCriteria({...criteria, minaccessibility: '.8', maxaccessibility: '1'});
-    }
-    return criteria;
-  }
+  // const getAccessibilityCriteria =(evt)=>{
+
+  //   if (evt.target.value ==='0'){
+  //     setCriteria({...criteria, accessibility: '0', minaccessibility: '', maxaccessibility: ''});
+  //   }else if (evt.target.value === '.1-.9'){
+  //     setCriteria({...criteria, minaccessibility: '.1', maxaccessibility: '.7', accessibility: ''})
+  //   }else{
+  //     setCriteria({...criteria, minaccessibility: '', maxaccessibility: '', accessibility: '1'});
+  //   }
+  //   return criteria;
+  // }
 
 
   // new URLSearchParams creates a search param object and creates a string
@@ -58,6 +58,14 @@ function App() {
 
   const getActivityByCriteria = (evt) => {
     evt.preventDefault();
+
+    for (const option in criteria) {
+      if (criteria.option === ""){
+        console.log('theres something here', option);
+      }
+}
+
+
     console.log('Getting criteria', criteria);
 
     axios.get(`/ideas/bycriteria${params}`)
@@ -68,6 +76,9 @@ function App() {
       .catch(error => {
         console.log('Unable to get byCriteria: ', error);
       })
+
+
+
 
   }
 
@@ -91,7 +102,7 @@ function App() {
         <br></br>
 
         <form onSubmit={getActivityByCriteria}>
-          <label>Search For: </label>
+          <label>Activity Type: </label>
           <select onChange={evt => setCriteria({ ...criteria, type: evt.target.value })} name='type' id='type'>
             <option value=''>Please Choose An Activity Type</option>
             <option value='busywork'>Busywork</option>
@@ -126,27 +137,8 @@ function App() {
             </input>
             <label htmlFor='priceInput'>Expensive </label>
 
-
           </fieldset>
           <br></br>
-
-
-          <fieldset onChange={getAccessibilityCriteria}>
-            <legend>Accesibility Rating</legend>
-
-            <input type='radio' name='accessibility' value='0'></input>
-            <label htmlFor='notAccessible' >Not Accessible</label>
-
-            <input type='radio' name='accessibility' value='.1-0.7'></input>
-            <label htmlFor='somewhatAccessible' >Minimal Accesibility</label>
-
-            <input type='radio' name='accessibility' value='.8-1' ></input>
-            <label htmlFor='fullyAccessible' >Full Accessibility</label>
-
-
-
-
-          </fieldset>
 
 
 
