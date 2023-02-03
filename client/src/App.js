@@ -121,7 +121,8 @@ function App() {
           <input onChange={evt => setCriteria({ ...criteria, participants: evt.target.value })} type='number' id='participantsInput' min='1' max='10'></input>
           <br></br>
 
-          <fieldset onChange={getPriceCriteria}>
+          <fieldset onChange={getPriceCriteria}
+          className='border-0'>
 
             <legend>Select Price</legend>
             {/* /// TODO- REMOVE BORDER  */}
