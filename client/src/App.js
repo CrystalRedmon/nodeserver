@@ -70,8 +70,13 @@ function App() {
 
     axios.get(`/ideas/bycriteria${params}`)
       .then(response => {
-        console.log('This is the criteria response: ', response.data.activity);
+        if (!response.data.activity){
+          setActivity('Try Again2');
+        }else{
+          console.log('This is the criteria response: ', response.data.activity);
         setActivity(response.data.activity);
+        }
+        
       })
       .catch(error => {
         console.log('Unable to get byCriteria: ', error);
