@@ -5,6 +5,7 @@ import { useState } from 'react';
 function App() {
 
   const [activity, setActivity] = useState('');
+  const [randomActivity, setRandomActivity] = useState('');
 
   const [type, setType] = useState('');
   const [criteria, setCriteria] = useState({
@@ -19,7 +20,7 @@ function App() {
     axios.get('/ideas')
       .then(response => {
         console.log('this is the response: ', response.data);
-        setActivity(response.data)
+        setRandomActivity(response.data)
       })
       .catch(error => {
         console.log('Get did not work. Error: ', error);
@@ -70,13 +71,12 @@ function App() {
 
     axios.get(`/ideas/bycriteria${params}`)
       .then(response => {
-        if (!response.data.activity){
-          setActivity('Try Again2');
-        }else{
+
+      
           console.log('This is the criteria response: ', response.data.activity);
-        setActivity(response.data.activity);
-        }
+          setActivity(response.data.activity);
         
+
       })
       .catch(error => {
         console.log('Unable to get byCriteria: ', error);
@@ -98,6 +98,11 @@ function App() {
         <button onClick={handleOnClick}>
           Select Random Activity
         </button>
+
+        <div>
+          {randomActivity ? <p>{randomActivity}</p> : <p>Results Go Here</p>}
+        </div>
+
 
         <br></br>
         <br></br>
