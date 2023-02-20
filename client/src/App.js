@@ -60,26 +60,22 @@ function App() {
     evt.preventDefault();
 
     for (const option in criteria) {
-      if (criteria.option === ""){
+      if (criteria.option === "") {
         console.log('theres something here', option);
       }
-}
+    }
 
 
     console.log('Getting criteria', criteria);
 
     axios.get(`/ideas/bycriteria${params}`)
       .then(response => {
-        console.log('This is the criteria response: ', response.data);
-        setActivity(response.data);
+        console.log('This is the criteria response: ', response.data.activity);
+        setActivity(response.data.activity);
       })
       .catch(error => {
         console.log('Unable to get byCriteria: ', error);
       })
-
-
-
-
   }
 
 
@@ -122,7 +118,7 @@ function App() {
           <br></br>
 
           <fieldset onChange={getPriceCriteria}
-          className='border-0'>
+            className='border-0'>
 
             <legend>Select Price</legend>
             {/* /// TODO- REMOVE BORDER  */}
@@ -150,14 +146,10 @@ function App() {
 
 
         <div>
-          {activity.activity ? <p>{activity.activity}</p> : <p>Results Go Here</p>}
+          {activity ? <p>{activity}</p> : <p>Results Go Here</p>}
         </div>
 
       </main>
-
-
-
-
 
 
     </div>

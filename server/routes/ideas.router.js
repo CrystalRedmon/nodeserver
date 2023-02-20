@@ -2,26 +2,6 @@ let express = require('express');
 let router = express.Router();
 const axios = require('axios');
 
-
-
-
-
-let sisters = {
-    older: "chantel",
-    middle: "tiffany",
-    younger: "crystal"
-}
-
-const getSisterName = (sisterObject) => {
-
-    for (const property in sisterObject) {
-        console.log('My name is: ', property);
-    }
-
-};
-
-console.log(getSisterName(sisters))
-
 // get random activity
 router.get('/', (req, res) => {
 
@@ -44,9 +24,9 @@ router.get('/bycriteria:criteria', async (req, res) => {
 
     try {
         let ideaByCriteria = await axios.get(`http://www.boredapi.com/api/activity?${criteria}`);
-    
+    console.log('Results for search by criteria: ', ideaByCriteria.data)
         res.send(ideaByCriteria.data);
-        console.log('Results for search by criteria: ', ideaByCriteria.data)
+        
 
     } catch (error) {
         console.log("This is the error: ", error);
@@ -54,14 +34,6 @@ router.get('/bycriteria:criteria', async (req, res) => {
     }
 
 })
-
-
-
-
-
-
-
-
 
 
 
@@ -77,27 +49,7 @@ router.get('/bycriteria:criteria', async (req, res) => {
 
 
 
-    // ****** FUNCTION PREVIOUSLY USED TO PUT THE CREATE URL PATH ******** //
-
-    // const getCriteria = (reqbody) => {
-
-    //     for (let [key, value] of Object.entries(reqbody)) {
-
-    //         if (key === 'type' || 'participants' || 'accessibility' || 'price' || 'minprice' || 'maxprice' || 'minaccessibility' || 'maxaccessibility') {
-    //             criteria.push(`${key}=${value}`); 
-    //             console.log("this is the key/value pair: ", key, ":", value);
-    //         }else{
-    //             console.log('it did not work');
-    //         }
-            
-    //     }
-
-        
-    //     return criteria;
-
-    // }
-
-
+    
 
 
 
