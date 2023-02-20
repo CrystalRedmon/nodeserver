@@ -73,9 +73,13 @@ function App() {
       .then(response => {
 
           console.log('no activity', response.data);
+
+        if(!response.data.activity){
+          setActivity('Try it again');
+        }else{
           console.log('This is the criteria response: ', response.data.activity);
           setActivity(response.data.activity);
-        
+        }
 
       })
       .catch(error => {
