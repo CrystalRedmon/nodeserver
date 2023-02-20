@@ -24,8 +24,10 @@ router.get('/bycriteria:criteria', async (req, res) => {
     try {
         let ideaByCriteria = await axios.get(`http://www.boredapi.com/api/activity?${criteria}`);
 
-        let noActivity = Object.hasOwn(ideaByCriteria, 'error');
-        if (noActivity) {
+        let noActivity = Object.hasOwn(ideaByCriteria.data, 'error');
+        console.log(noActivity)
+        if (noActivity === true) {
+            
             res.send('Try Again');
         } else {
             res.send(ideaByCriteria.data);

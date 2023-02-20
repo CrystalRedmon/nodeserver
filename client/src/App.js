@@ -72,7 +72,7 @@ function App() {
     axios.get(`/ideas/bycriteria${params}`)
       .then(response => {
 
-      
+          console.log('no activity', response.data);
           console.log('This is the criteria response: ', response.data.activity);
           setActivity(response.data.activity);
         
