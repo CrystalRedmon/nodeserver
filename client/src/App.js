@@ -75,7 +75,7 @@ function App() {
           console.log('no activity', response.data);
 
         if(!response.data.activity){
-          setActivity('Try it again');
+          setActivity('Sorry, can\'t find any matches. Try swicthing things up.');
         }else{
           console.log('This is the criteria response: ', response.data.activity);
           setActivity(response.data.activity);
