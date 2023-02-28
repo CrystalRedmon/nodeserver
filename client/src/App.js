@@ -16,9 +16,7 @@ function App() {
 
   //get random activity
   const handleOnClick = () => {
-    console.log('inside handleOnClick');
-
-    axios.get('/ideas')
+      axios.get('/ideas')
       .then(response => {
         console.log('this is the response: ', response.data);
         setRandomActivity(response.data)
@@ -26,11 +24,9 @@ function App() {
       .catch(error => {
         console.log('Get did not work. Error: ', error);
       })
-
   }
 
   const getPriceCriteria = (evt) => {
-
     if (evt.target.value === '0') {
       setCriteria({ ...criteria, price: '0', minprice: '', maxprice: '' });
     } else if (evt.target.value === '.1-0.7') {
@@ -41,48 +37,33 @@ function App() {
     return criteria
   }
 
-
-
-  // new URLSearchParams creates a search param object and creates a string
-  const params = new URLSearchParams(criteria)
-
   const getActivityByCriteria = (evt) => {
     evt.preventDefault();
 
-    console.log('hey, hey')
-  
-    for (let option in criteria) {
-      if(criteria[option] === '')
-      console.log(option);
+    // new URLSearchParams creates a search param object and creates a string
+    const params = new URLSearchParams(criteria)
+    const criteriaArray = Object.values(criteria);
+    let checkCriteriaForStrings = criteriaArray.every(eachCriteria => { return eachCriteria === '' });
+
+    console.log('checking', checkCriteriaForStrings, criteria);
+
+    if (checkCriteriaForStrings === true) {
+      alert('Please select at least one criteria OR select a random activity.')
+    } else {
+      axios.get(`/ideas/bycriteria${params}`)
+        .then(response => {
+          if (!response.data.activity) {
+            setActivity('Sorry, can\'t find any matches. Try swicthing things up.');
+          } else {
+            console.log('This is the criteria response: ', response.data.activity);
+            setActivity(response.data.activity);
+          }
+        })
+        .catch(error => {
+          console.log('Unable to get byCriteria: ', error);
+        })
     }
-
-
-    console.log('Getting criteria', criteria);
-
-    axios.get(`/ideas/bycriteria${params}`)
-      .then(response => {
-
-          console.log('no activity', response.data);
-
-        if(!response.data.activity){
-          setActivity('Sorry, can\'t find any matches. Try swicthing things up.');
-        }else{
-          console.log('This is the criteria response: ', response.data.activity);
-          setActivity(response.data.activity);
-        }
-
-      })
-      .catch(error => {
-        console.log('Unable to get byCriteria: ', error);
-      })
-
-
-
-
-      
   }
-
-
 
   return (
     <div className="App">
@@ -101,7 +82,6 @@ function App() {
         <div>
           {randomActivity ? <p>{randomActivity}</p> : <p>Results Go Here</p>}
         </div>
-
 
         <br></br>
         <br></br>
@@ -146,20 +126,16 @@ function App() {
           </fieldset>
           <br></br>
 
-
-
           <button type='submit'>
             Get Activity
           </button >
         </form>
-
 
         <div>
           {activity ? <p>{activity}</p> : <p>Results Go Here</p>}
         </div>
 
       </main>
-
 
     </div>
   );
