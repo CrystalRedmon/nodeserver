@@ -14,6 +14,7 @@ function App() {
     price: ''
   });
 
+  //get random activity
   const handleOnClick = () => {
     console.log('inside handleOnClick');
 
@@ -41,18 +42,6 @@ function App() {
   }
 
 
-  // const getAccessibilityCriteria =(evt)=>{
-
-  //   if (evt.target.value ==='0'){
-  //     setCriteria({...criteria, accessibility: '0', minaccessibility: '', maxaccessibility: ''});
-  //   }else if (evt.target.value === '.1-.9'){
-  //     setCriteria({...criteria, minaccessibility: '.1', maxaccessibility: '.7', accessibility: ''})
-  //   }else{
-  //     setCriteria({...criteria, minaccessibility: '', maxaccessibility: '', accessibility: '1'});
-  //   }
-  //   return criteria;
-  // }
-
 
   // new URLSearchParams creates a search param object and creates a string
   const params = new URLSearchParams(criteria)
@@ -60,10 +49,11 @@ function App() {
   const getActivityByCriteria = (evt) => {
     evt.preventDefault();
 
-    for (const option in criteria) {
-      if (criteria.option === "") {
-        console.log('theres something here', option);
-      }
+    console.log('hey, hey')
+  
+    for (let option in criteria) {
+      if(criteria[option] === '')
+      console.log(option);
     }
 
 
@@ -85,6 +75,11 @@ function App() {
       .catch(error => {
         console.log('Unable to get byCriteria: ', error);
       })
+
+
+
+
+      
   }
 
 
