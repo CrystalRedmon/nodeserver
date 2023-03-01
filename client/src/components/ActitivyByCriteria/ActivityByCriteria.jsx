@@ -92,8 +92,7 @@ function ActivityByCriteria() {
         <fieldset onChange={getPriceCriteria}
           className='border-0'>
 
-          <legend>Select Price</legend>
-          {/* /// TODO- REMOVE BORDER  */}
+          <legend>Select Price:</legend>
           <input type='radio' name='priceInput' value='0'>
           </input>
           <label htmlFor='priceInput'>Free 99!</label>
@@ -109,13 +108,17 @@ function ActivityByCriteria() {
         </fieldset>
         <br></br>
 
-        <button type='submit'>
-          Get Activity
-        </button >
+        <div className="button-container">
+          <button type='submit'>
+            Get Activity
+          </button >
 
-        <button type='reset' onClick={resetCriteria}>
-          Clear Criteria
-        </button>
+          <button type='reset' onClick={resetCriteria}>
+            Clear Criteria
+          </button>
+
+        </div>
+
       </form>
 
       <div>
