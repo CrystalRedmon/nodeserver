@@ -1,7 +1,46 @@
-/* .App {
+*{
+  box-sizing: border-box;
+  margin: 0; 
+  padding: 0;
+}
+.App {
   text-align: center;
 }
 
+.App-header{
+background-color: #BF3326;
+padding: 1em;
+border-bottom: solid black 8px;
+}
+
+body{
+  background-color: #6B90BF;
+}
+
+h2{
+  margin: 1em auto;
+}
+
+button{
+  margin: 0 auto 2em auto;
+}
+
+.random-container{
+  border-bottom: solid black 2px;
+  padding-bottom: 2em;
+}
+
+.criteria-container form {
+  width: 75%;
+  margin: auto;
+  text-align: left;
+}
+
+
+
+
+
+/*
 .App-logo {
   height: 40vmin;
   pointer-events: none;

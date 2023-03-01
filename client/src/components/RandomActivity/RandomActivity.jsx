@@ -19,12 +19,15 @@ function RandomActivity() {
 
     return (<>
 
-        <button onClick={handleOnClick}>
-            Select Random Activity
-        </button>
+        <h2>Random Activity</h2>
+        <div className="random-container">
+            <button onClick={handleOnClick}>
+                Select Random Activity
+            </button>
 
-        <div>
-            {randomActivity ? <p>{randomActivity}</p> : <p>Results Go Here</p>}
+            <div>
+                {randomActivity ? <p>{randomActivity}</p> : <p>Results Go Here</p>}
+            </div>
         </div>
     </>)
 }
