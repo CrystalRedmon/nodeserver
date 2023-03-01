@@ -16,7 +16,7 @@ function App() {
 
   //get random activity
   const handleOnClick = () => {
-      axios.get('/ideas')
+    axios.get('/ideas')
       .then(response => {
         console.log('this is the response: ', response.data);
         setRandomActivity(response.data)
@@ -34,8 +34,12 @@ function App() {
     } else {
       setCriteria({ ...criteria, price: '', minprice: '.8', maxprice: '1.0' });
     }
+
     return criteria
   }
+
+
+
 
   const getActivityByCriteria = (evt) => {
     evt.preventDefault();
@@ -64,6 +68,20 @@ function App() {
         })
     }
   }
+
+  function resetCriteria() {
+    setCriteria({
+      type: '',
+      participants: '',
+      price: ''
+    });
+
+    setActivity('');
+
+  }
+
+
+
 
   return (
     <div className="App">
@@ -129,6 +147,10 @@ function App() {
           <button type='submit'>
             Get Activity
           </button >
+
+          <button type='reset' onClick={resetCriteria}>
+            Clear Criteria
+          </button>
         </form>
 
         <div>
