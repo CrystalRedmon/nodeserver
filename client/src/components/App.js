@@ -1,6 +1,7 @@
 import './App.css';
 import axios, * as others from 'axios';
 import { useState } from 'react';
+import RandomActivity from './RandomActivity/RandomActivity';
 
 function App() {
 
@@ -93,16 +94,7 @@ function App() {
 
       <main>
 
-        <button onClick={handleOnClick}>
-          Select Random Activity
-        </button>
-
-        <div>
-          {randomActivity ? <p>{randomActivity}</p> : <p>Results Go Here</p>}
-        </div>
-
-        <br></br>
-        <br></br>
+<RandomActivity/>
 
         <form onSubmit={getActivityByCriteria}>
           <label>Activity Type: </label>
