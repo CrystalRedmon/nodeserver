@@ -63,8 +63,8 @@ button {
 }
 
 .random-container {
-
   margin-bottom: 3em;
+  height: 5em;
 }
 
 
@@ -98,6 +98,20 @@ form select, form input{
 
 
 /* TO ANIMATE THE RESULT */
+
+.random-result{
+  color: var(--pink);
+  font-weight: bolder;
+  translate: 0 1em;
+  transition: 1s;
+}
+
+
+
+
+
+
+
 
 
 
