@@ -18,7 +18,7 @@ function RandomActivity() {
     }
 
     return (<>
-
+<div className='header-border'></div>
         <h2>Random Activity</h2>
         <div className="random-container">
             <button onClick={handleOnClick}>

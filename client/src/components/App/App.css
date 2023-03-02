@@ -4,18 +4,41 @@
   padding: 0;
 }
 
+:root{
+    --ocean: #C4F2EE;
+    --pink: #F291A3; 
+    --black: #0D0D0D;
+}
+
+
 .App {
   text-align: center;
 }
 
 .App-header {
-  background-color: #BF3326;
-  padding: 1em;
-  border-bottom: solid black 8px;
+  background-color: var(--pink);
+  padding-top: 1em;
+  padding-bottom: 1em;
+  /* border-bottom: solid black 8px; */
+}
+
+
+.header-border{
+height: 5px;
+ background: radial-gradient(circle, rgba(242,92,92,1) 0%, rgba(191,65,88,1) 23%, rgba(42,26,64,1) 97%);
 }
 
 body {
-  background-color: #6B90BF;
+  background-color: var(--ocean);
+  color: var(--black);
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+
+h1{
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 2.5em;
 }
 
 h2 {
@@ -24,6 +47,9 @@ h2 {
 
 button {
   margin: 0 auto 2em auto;
+  padding: .25em;
+  background-color: #F2F2F2;
+
 }
 
 .random-container {
@@ -32,7 +58,7 @@ button {
 }
 
 .criteria-container form {
-  width: 75%;
+  width: 55%;
   margin: auto;
   text-align: left;
 }
@@ -44,7 +70,6 @@ button {
 
 fieldset {
   border: none;
-
 }
 
 form * {

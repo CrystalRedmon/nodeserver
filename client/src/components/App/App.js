@@ -13,7 +13,7 @@ function App() {
         <h1>
           Don't Be Bored
         </h1>
-
+        
       </header>
 
       <main>
