@@ -31,7 +31,7 @@ function RandomActivity() {
                 </button>
 
                 <div >
-                    {randomActivity ? <p className="random-result">{randomActivity}</p> : <p>Results Go Here</p>}
+                    {randomActivity ? <p id="random-result">{randomActivity}</p> : <p>Results Go Here</p>}
                 </div>
             </div>
         </div>

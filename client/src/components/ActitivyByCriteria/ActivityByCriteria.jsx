@@ -69,6 +69,7 @@ function ActivityByCriteria() {
 <div className='container'>
     <h2>Activity By Criteria</h2>
     <div className="criteria-container">
+      
       <form onSubmit={getActivityByCriteria}>
         <label>Activity Type: </label>
         <select onChange={evt => setCriteria({ ...criteria, type: evt.target.value })} name='type' id='type'>
@@ -127,7 +128,7 @@ function ActivityByCriteria() {
       </form>
 
       <div>
-        {activity ? <p>{activity}</p> : <p>Results Go Here</p>}
+        {activity ? <p id="criteria-result">{activity}</p> : <p>Results Go Here</p>}
       </div>
 
     </div>

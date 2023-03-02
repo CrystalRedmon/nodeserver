@@ -52,19 +52,20 @@ h1{
 }
 
 h2 {
-  margin: 1em auto;
+  margin: 1em auto .5em auto`;
 }
 
 button {
-  margin: 0 auto 2em auto;
-  padding: .25em;
+  margin: 0 auto 1em auto;
+  padding: .5em;
   background-color: #F2F2F2;
+  border-radius: 10px;
 
 }
 
-.random-container {
+.random-container, .criteria-container {
   margin-bottom: 3em;
-  height: 5em;
+  height: 4.5em;
 }
 
 
@@ -87,6 +88,7 @@ form select, form input{
   align-items: left;
   flex-direction: column;
   justify-content: center;
+
 }
 
 #input-container div{
@@ -97,9 +99,9 @@ form select, form input{
 }
 
 
-/* TO ANIMATE THE RESULT */
+/*  */
 
-.random-result{
+#random-result, #criteria-result{
   color: var(--pink);
   font-weight: bolder;
   translate: 0 1em;
