@@ -15,6 +15,11 @@
   text-align: center;
 }
 
+.container{
+  width: 75%;
+  margin: auto;
+}
+
 .App-header {
   background-color: var(--pink);
   padding-top: 1em;
@@ -24,10 +29,15 @@
 
 
 .header-border{
-height: 5px;
+height: 3px;
  background: radial-gradient(circle, rgba(242,92,92,1) 0%, rgba(191,65,88,1) 23%, rgba(42,26,64,1) 97%);
+
 }
 
+.short{
+  width: 90%;
+  margin: auto;
+}
 body {
   background-color: var(--ocean);
   color: var(--black);
@@ -53,42 +63,56 @@ button {
 }
 
 .random-container {
-  border-bottom: solid black 2px;
-  padding-bottom: 2em;
+
+  margin-bottom: 3em;
 }
 
-.criteria-container form {
-  width: 55%;
-  margin: auto;
-  text-align: left;
-}
 
 .button-container {
   display: flex;
-
 }
 
 fieldset {
   border: none;
 }
 
-form * {
+form select, form input{
   margin-bottom: 1em;
+} 
+
+
+
+#input-container{
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  justify-content: center;
 }
 
-legend, label{
-  margin-bottom: .5em;
+#input-container div{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  align-self: center;
 }
+
+
+/* TO ANIMATE THE RESULT */
+
+
+
+/* 
+#input-container label, #input-container input{
+  color: red;
+  border: solid black 1px;
+} */
+
 
 
 
 
 
 /*
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

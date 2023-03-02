@@ -65,14 +65,14 @@ function ActivityByCriteria() {
 
 
   return (<>
-
-
+<div className='header-border short'></div>
+<div className='container'>
     <h2>Activity By Criteria</h2>
     <div className="criteria-container">
       <form onSubmit={getActivityByCriteria}>
         <label>Activity Type: </label>
         <select onChange={evt => setCriteria({ ...criteria, type: evt.target.value })} name='type' id='type'>
-          <option value=''>Please Choose An Activity Type</option>
+          <option value=''>Select Type</option>
           <option value='busywork'>Busywork</option>
           <option value='charity'>Charity</option>
           <option value='cooking'>Cooking</option>
@@ -93,18 +93,23 @@ function ActivityByCriteria() {
           className='border-0'>
 
           <legend>Select Price:</legend>
-          <input type='radio' name='priceInput' value='0'>
-          </input>
-          <label htmlFor='priceInput'>Free 99!</label>
+          <div id='input-container'>
+            <div>
+              <label htmlFor='free' >Free 99!</label>
+              <input type='radio' id='free' name='priceInput' value='0'>
+              </input>
+            </div>
 
-          <input type='radio' name='priceInput' value='.1-0.7' >
-          </input>
-          <label htmlFor='priceInput'>Affordable</label>
+            <div><label htmlFor='affordable'>Affordable</label>
+              <input type='radio' id='affordable' name='priceInput' value='.1-0.7' >
+              </input></div>
 
-          <input type='radio' name='priceInput' value='.8-1'>
-          </input>
-          <label htmlFor='priceInput'>Expensive </label>
-
+            <div><label htmlFor='expensive'>Expensive </label>
+              <input type='radio' id='expensive' name='priceInput' value='.8-1'>
+              </input
+              >
+            </div>
+          </div>
         </fieldset>
         <br></br>
 
@@ -127,7 +132,7 @@ function ActivityByCriteria() {
 
     </div>
 
-
+    </div>
 
   </>)
 }
