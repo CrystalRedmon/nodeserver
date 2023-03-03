@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios, * as others from 'axios';
+import Swal from 'sweetalert2';
 
 function ActivityByCriteria() {
 
@@ -33,7 +34,9 @@ function ActivityByCriteria() {
     console.log('checking', checkCriteriaForStrings, criteria);
 
     if (checkCriteriaForStrings === true) {
-      alert('Please select at least one criteria OR select a random activity.')
+
+      Swal.fire('Please select at least one criteria.', '', 'error');
+      // alert('Please select at least one criteria OR select a random activity.')
     } else {
       axios.get(`/ideas/bycriteria${params}`)
         .then(response => {
@@ -86,7 +89,7 @@ function ActivityByCriteria() {
         </select>
         <br></br>
 
-        <label htmlFor='participantsInput'>Number of Participants: </label>
+        <label htmlFor='participantsInput'># of Participants (1-10): </label>
         <input onChange={evt => setCriteria({ ...criteria, participants: evt.target.value })} type='number' id='participantsInput' min='1' max='10'></input>
         <br></br>
 
