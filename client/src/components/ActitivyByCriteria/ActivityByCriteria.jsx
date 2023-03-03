@@ -2,13 +2,18 @@ import { useState } from "react";
 import axios, * as others from 'axios';
 import Swal from 'sweetalert2';
 
+// DESIGN DESKTOP VERSION
+
+
 function ActivityByCriteria() {
 
   const [activity, setActivity] = useState('');
   const [criteria, setCriteria] = useState({
     type: '',
     participants: '',
-    price: ''
+    price: '',
+    minprice: '',
+    maxprice: ''
   });
 
   const getPriceCriteria = (evt) => {
@@ -57,7 +62,9 @@ function ActivityByCriteria() {
     setCriteria({
       type: '',
       participants: '',
-      price: ''
+      price: '',
+      minprice: '',
+      maxprice: ''
     });
 
     setActivity('');
@@ -95,7 +102,7 @@ function ActivityByCriteria() {
         <input onChange={evt => setCriteria({ ...criteria, participants: evt.target.value })} type='number' id='participantsInput' min='1' max='10'></input>
         <br></br>
 
-        <fieldset onChange={getPriceCriteria}
+        <fieldset onClick={getPriceCriteria}
           className='border-0'>
 
           <legend>Select Price:</legend>
@@ -112,8 +119,7 @@ function ActivityByCriteria() {
 
             <div><label htmlFor='expensive'>Expensive </label>
               <input type='radio' id='expensive' name='priceInput' value='.8-1'>
-              </input
-              >
+              </input>
             </div>
           </div>
         </fieldset>
