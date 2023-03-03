@@ -61,6 +61,8 @@ function ActivityByCriteria() {
     });
 
     setActivity('');
+    
+    console.log('activity: ', activity, 'criteria', criteria);
 
   }
 

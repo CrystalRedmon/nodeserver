@@ -96,13 +96,13 @@ form select, form input{
   justify-content: space-between;
   width: 50%;
   align-self: center;
+
 }
 
 
 /*  */
 
 #random-result, #criteria-result{
-  color: var(--pink);
   font-weight: bolder;
   translate: 0 1em;
   transition: 1s;
