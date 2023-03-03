@@ -1,6 +1,4 @@
 import './App.css';
-import axios, * as others from 'axios';
-import { useState } from 'react';
 import RandomActivity from '../RandomActivity/RandomActivity';
 import ActivityByCriteria from '../ActitivyByCriteria/ActivityByCriteria';
 
@@ -13,13 +11,16 @@ function App() {
         <h1>
           Don't Be Bored
         </h1>
-        
+
+
       </header>
-
+      <div className='header-border'></div>
       <main>
+        <div id='main-container'>
+          <RandomActivity />
+          <ActivityByCriteria />
+        </div>
 
-        <RandomActivity />
-        <ActivityByCriteria />
 
       </main>
 

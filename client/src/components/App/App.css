@@ -4,10 +4,10 @@
   padding: 0;
 }
 
-:root{
-    --ocean: #C4F2EE;
-    --pink: #F291A3; 
-    --black: #0D0D0D;
+:root {
+  --ocean: #C4F2EE;
+  --pink: #F291A3;
+  --black: #0D0D0D;
 }
 
 
@@ -15,7 +15,7 @@
   text-align: center;
 }
 
-.container{
+.container {
   width: 75%;
   margin: auto;
 }
@@ -28,16 +28,17 @@
 }
 
 
-.header-border{
-height: 3px;
- background: radial-gradient(circle, rgba(242,92,92,1) 0%, rgba(191,65,88,1) 23%, rgba(42,26,64,1) 97%);
+.header-border {
+  height: 6px;
+  background: radial-gradient(circle, rgba(242, 92, 92, 1) 0%, rgba(191, 65, 88, 1) 23%, rgba(42, 26, 64, 1) 97%);
 
 }
 
-.short{
+.short {
   width: 90%;
   margin: auto;
 }
+
 body {
   background-color: var(--ocean);
   color: var(--black);
@@ -46,7 +47,7 @@ body {
 }
 
 
-h1{
+h1 {
   font-family: 'Bubblegum Sans', cursive;
   font-size: 2.5em;
 }
@@ -63,7 +64,8 @@ button {
 
 }
 
-.random-container, .criteria-container {
+.random-container,
+.criteria-container {
   margin-bottom: 3em;
   height: 4.5em;
 }
@@ -77,13 +79,14 @@ fieldset {
   border: none;
 }
 
-form select, form input{
+form select,
+form input {
   margin-bottom: 1em;
-} 
+}
 
 
 
-#input-container{
+#input-container {
   display: flex;
   align-items: left;
   flex-direction: column;
@@ -91,7 +94,7 @@ form select, form input{
 
 }
 
-#input-container div{
+#input-container div {
   display: flex;
   justify-content: space-between;
   width: 50%;
@@ -100,9 +103,8 @@ form select, form input{
 }
 
 
-/*  */
-
-#random-result, #criteria-result{
+#random-result,
+#criteria-result {
   font-weight: bolder;
   translate: 0 1em;
   transition: 1s;
@@ -110,7 +112,29 @@ form select, form input{
 
 
 
+@media (min-width: 800px) {
 
+  body {
+    background-color: #F2F2F2;
+  }
+
+  #main-container {
+    background-color: var(--ocean);
+    height: 91vh;
+    width: 75%;
+    margin: 0 auto;
+    display: flex;
+  }
+
+  .short {
+    height: 0px;
+  }
+
+
+
+
+
+}
 
 
 

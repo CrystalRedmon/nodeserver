@@ -77,8 +77,10 @@ function ActivityByCriteria() {
 
 
   return (<>
-<div className='header-border short'></div>
+
 <div className='container'>
+<div className='header-border short'></div>
+
     <h2>Activity By Criteria</h2>
     <div className="criteria-container">
       
