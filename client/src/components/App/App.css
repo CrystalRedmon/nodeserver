@@ -35,6 +35,28 @@
   background: radial-gradient(circle, rgba(242, 92, 92, 1) 0%, rgba(191, 65, 88, 1) 23%, rgba(42, 26, 64, 1) 97%);
 
 }
+/* #main-container {
+  margin: 4em auto;
+  display: flex;
+  background-color: var(--ocean);
+  height: 75vh;
+  width: 60vw;
+  border-radius: 20px;
+  box-shadow: 20px 10px 20px var(--black) ;
+
+} */
+#main-container{
+height: 90vh;
+background-color: var(--ocean);
+width: 90vw;
+margin: 1em auto;
+border-radius: 20px;
+padding-top: .5em;
+}
+
+
+
+
 
 .short {
   width: 90%;
@@ -45,6 +67,8 @@ body {
   background-color: var(--ocean);
   color: var(--black);
   font-family: 'Open Sans', sans-serif;
+  background-image: url('../../../public/hd-wallpaper-ge4a93b103_1280.jpg');
+  opacity: .75;
 
 }
 
@@ -56,6 +80,7 @@ h1 {
 
 h2 {
   margin: 1em auto .5em auto;
+
 }
 
 button {
@@ -66,10 +91,10 @@ button {
 
 }
 
-.random-container,
-.criteria-container {
+
+.criteria-container, .random-container {
   margin-bottom: 3em;
-  height: 4.5em;
+  height: 8em;
 }
 
 
@@ -99,7 +124,7 @@ form input {
 #input-container div {
   display: flex;
   justify-content: space-between;
-  width: 50%;
+
   align-self: center;
 
 }
@@ -118,6 +143,11 @@ form input {
 
   body {
     background-color: #F2F2F2;
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: .75;
   }
 
   #main-container {
@@ -127,6 +157,7 @@ form input {
     height: 75vh;
     width: 60vw;
     border-radius: 20px;
+    box-shadow: 20px 10px 20px var(--black) ;
 
   }
 
@@ -145,6 +176,8 @@ form input {
 .random-container button{
   margin: 50px auto 50px auto;
 }
+
+
 
 }
 

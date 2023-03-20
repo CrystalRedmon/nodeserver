@@ -22,12 +22,13 @@ function RandomActivity() {
 
     return (<>
 
-        
-            
 
-           <div className='container'> 
-            <h2>Random Activity</h2>
+
+
+        <div className='container'>
+
             <div className="random-container">
+                <h2>Random Activity</h2>
                 <button onClick={handleOnClick}>
                     Select Random Activity
                 </button>
